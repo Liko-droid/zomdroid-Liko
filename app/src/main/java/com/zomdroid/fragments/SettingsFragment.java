@@ -71,7 +71,6 @@ binding.settingsRenderHintHelpIb.setOnClickListener(v -> {
             public void onNothingSelected(AdapterView<?> parent) {}
         });
 }
-
 private void saveMemoryMode(String mode) {
     requireActivity().getSharedPreferences("settings", Context.MODE_PRIVATE)
             .edit()
@@ -79,11 +78,6 @@ private void saveMemoryMode(String mode) {
             .apply();
 }
 
-@Override
-public void onDestroyView() {
-    super.onDestroyView();
-    binding = null;
-}
         // Кастомный адаптер — отключает CUSTOM_DRIVER если файл не загружен
         ArrayAdapter<LauncherPreferences.VulkanDriver> vulkanDriverAdapter =
                 new ArrayAdapter<LauncherPreferences.VulkanDriver>(requireContext(),
@@ -181,6 +175,12 @@ public void onDestroyView() {
             public void onNothingSelected(AdapterView<?> parent) {}
         });
 
+@Override
+public void onDestroyView() {
+    super.onDestroyView();
+    binding = null;
+}
+}
         binding.settingsResolutionScaleSb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
