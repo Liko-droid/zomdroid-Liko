@@ -41,6 +41,9 @@ binding.btnEquilibrado.setOnClickListener(v -> {
 binding.btnAgresivo.setOnClickListener(v -> {
     saveMemoryMode("agresivo");
 });
+binding.settingsRenderHintHelpIb.setOnClickListener(v -> {
+    Navigation.findNavController(v).navigate(R.id.wiki_fragment);
+        });
 
         ArrayAdapter<LauncherPreferences.Renderer> rendererArrayAdapter = new ArrayAdapter<>(requireContext(),
                 android.R.layout.simple_spinner_dropdown_item, LauncherPreferences.Renderer.values());
@@ -74,10 +77,6 @@ private void saveMemoryMode(String mode) {
             .putString("memory_mode", mode)
             .apply();
 }
-        binding.settingsRenderHintHelpIb.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.wiki_fragment);
-        });
-
         // Кастомный адаптер — отключает CUSTOM_DRIVER если файл не загружен
         ArrayAdapter<LauncherPreferences.VulkanDriver> vulkanDriverAdapter =
                 new ArrayAdapter<LauncherPreferences.VulkanDriver>(requireContext(),
