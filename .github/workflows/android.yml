@@ -2,9 +2,9 @@ name: Android CI
 
 on:
   push:
-    branches: [ "keyboard-experimental" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "keyboard-experimental" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -19,6 +19,9 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+
+- name: Dar permisos a gradlew
+  run: chmod +x gradlew
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug --stacktrace

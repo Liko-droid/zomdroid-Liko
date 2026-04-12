@@ -136,6 +136,43 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/settings_jargs_tv" />
 
+<!-- Modo de memoria -->
+<TextView
+    android:id="@+id/settings_memory_mode_title"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:text="Modo de memoria"
+    android:layout_marginTop="12dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/settings_jargs_et"/>
+
+<Button
+    android:id="@+id/btnConservador"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:text="Conservador"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/settings_memory_mode_title"
+    app:layout_constraintEnd_toEndOf="parent"/>
+
+<Button
+    android:id="@+id/btnEquilibrado"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:text="Equilibrado"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/btnConservador"
+    app:layout_constraintEnd_toEndOf="parent"/>
+
+<Button
+    android:id="@+id/btnAgresivo"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:text="Agresivo"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/btnEquilibrado"
+    app:layout_constraintEnd_toEndOf="parent"/>
+
     <TextView
         android:id="@+id/settings_env_vars_tv"
         android:layout_width="0dp"
@@ -143,7 +180,7 @@
         android:layout_marginTop="12dp"
         android:text="@string/settings_env_vars"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/settings_jargs_et" />
+        app:layout_constraintTop_toBottomOf="@id/btnAgresivo" />
 
     <ImageButton
         android:id="@+id/settings_env_vars_info"

@@ -14,6 +14,12 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class GameLauncher {
+
+private static Context context;
+
+public static void setContext(Context ctx) {
+    context = ctx;
+}
     public static void launch(GameInstance gameInstance) throws ErrnoException {
 
 /*        // for debug
@@ -98,6 +104,37 @@ public class GameLauncher {
 
         // JVM args [variables] from user settings
         ArrayList<String> jvmArgs = gameInstance.getJvmArgsAsList();
+        // JVM args [variables] from user settings
+        ArrayList<String> jvmArgs = gameInstance.getJvmArgsAsList();
+// Limpiar valores anteriores
+jvmArgs.removeIf(arg -> arg.startsWith("-Xmx") || arg.startsWith("-Xms"));
+
+// Leer modo guardado
+SharedPreferences prefs = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
+String mode = prefs.getString("memory_mode", "equilibrado");
+
+String memoryArgs;
+
+switch (mode) {
+    case "conservador":
+        memoryArgs = "-Xms512m -Xmx1024m";
+        break;
+
+    case "agresivo":
+        memoryArgs = "-Xms512m -Xmx4096m";
+        break;
+
+    case "equilibrado":
+    default:
+        memoryArgs = "-Xms512m -Xmx2560m";
+        break;
+}
+
+// Añadir nuevos valores
+String[] memSplit = memoryArgs.split("\\s+");
+for (String arg : memSplit) {
+    jvmArgs.add(arg);
+}
         String rawArgs = LauncherPreferences.requireSingleton().getJvmArgs();
 
         if (rawArgs != null && !rawArgs.trim().isEmpty()) {

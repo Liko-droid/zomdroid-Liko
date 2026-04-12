@@ -44,6 +44,37 @@ import org.fmod.FMOD;
  * Hides the virtual controller UI when a physical gamepad is connected.
  */
 public class GameActivity extends AppCompatActivity implements GamepadManager.GamepadListener, KeyboardManager.KeyboardListener {
+
+//Selector de memoria
+private  enum MemoryMode {
+    CONSERVADOR,
+    EQUILIBRADO,
+    AGRESIVO
+}
+
+private MemoryMode currentMode = MemoryMode.EQUILIBRADO;
+
+private void saveMemoryMode(String mode) {
+    getSharedPreferences("settings", MODE_PRIVATE)
+        .edit()
+        .putString("memory_mode", mode)
+        .apply();
+}
+private void loadMemoryMode() {
+    String mode = getSharedPreferences("settings", MODE_PRIVATE)
+            .getString("memory_mode", "equilibrado");
+
+    switch (mode) {
+        case "conservador":
+            currentMode = MemoryMode.CONSERVADOR;
+            break;
+        case "agresivo":
+            currentMode = MemoryMode.AGRESIVO;
+            break;
+        default:
+            currentMode = MemoryMode.EQUILIBRADO;
+    }
+}
     public static final String EXTRA_GAME_INSTANCE_NAME = "com.zomdroid.GameActivity.EXTRA_GAME_INSTANCE_NAME";
     private static final String LOG_TAG = GameActivity.class.getName();
 
@@ -81,7 +112,8 @@ public class GameActivity extends AppCompatActivity implements GamepadManager.Ga
         binding = ActivityGameBinding.inflate(getLayoutInflater());
         // Give focus to game surface to ensure it receives input events
         setContentView(binding.getRoot());
-
+        loadMemoryMode();
+ 
         //binding.getRoot().setOnApplyWindowInsetsListener((v, insets) -> {
         //    boolean imeVisible = insets.isVisible(WindowInsets.Type.ime());
         //    systemKeyboardVisible = imeVisible;
@@ -173,6 +205,7 @@ public class GameActivity extends AppCompatActivity implements GamepadManager.Ga
                 GameLauncher.setSurface(gameSurface, width, height);
 
                 if (!isGameStarted) {
+                GameLauncher.setContext(this);
                     Thread thread = new Thread(() -> {
                         try {
                             GameLauncher.launch(gameInstance);

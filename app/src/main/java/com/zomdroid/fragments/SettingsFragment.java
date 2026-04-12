@@ -30,6 +30,26 @@ public class SettingsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+binding.btnConservador.setOnClickListener(v -> {
+    saveMemoryMode("conservador");
+});
+
+binding.btnEquilibrado.setOnClickListener(v -> {
+    saveMemoryMode("equilibrado");
+});
+
+binding.btnAgresivo.setOnClickListener(v -> {
+    saveMemoryMode("agresivo");
+});
+}
+
+private void saveMemoryMode(String mode) {
+    requireActivity().getSharedPreferences("settings", Context.MODE_PRIVATE)
+            .edit()
+            .putString("memory_mode", mode)
+            .apply();
+}
+
         ArrayAdapter<LauncherPreferences.Renderer> rendererArrayAdapter = new ArrayAdapter<>(requireContext(),
                 android.R.layout.simple_spinner_dropdown_item, LauncherPreferences.Renderer.values());
         binding.settingsRendererS.setAdapter(rendererArrayAdapter);
