@@ -41,6 +41,7 @@ binding.btnEquilibrado.setOnClickListener(v -> {
 binding.btnAgresivo.setOnClickListener(v -> {
     saveMemoryMode("agresivo");
 });
+
 }
 
 private void saveMemoryMode(String mode) {
