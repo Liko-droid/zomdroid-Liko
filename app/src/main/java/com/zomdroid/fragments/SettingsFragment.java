@@ -25,8 +25,8 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentSettingsBinding.inflate(inflater, container, false);
         return binding.getRoot();
-    }
-
+}
+    @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -42,19 +42,10 @@ binding.btnAgresivo.setOnClickListener(v -> {
     saveMemoryMode("agresivo");
 });
 
-}
-
-private void saveMemoryMode(String mode) {
-    requireActivity().getSharedPreferences("settings", Context.MODE_PRIVATE)
-            .edit()
-            .putString("memory_mode", mode)
-            .apply();
-}
-
         ArrayAdapter<LauncherPreferences.Renderer> rendererArrayAdapter = new ArrayAdapter<>(requireContext(),
                 android.R.layout.simple_spinner_dropdown_item, LauncherPreferences.Renderer.values());
         binding.settingsRendererS.setAdapter(rendererArrayAdapter);
-        binding.settingsRendererS.setSelection(rendererArrayAdapter.getPosition(LauncherPreferences.requireSingleton().getRenderer()));
+        binding.settingsRendererS.setSelection(rendererArrayAdapter.getPosition(LauncherPreferences.requireSingleton().getRenderer())); 
         binding.settingsRendererS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -76,7 +67,13 @@ private void saveMemoryMode(String mode) {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
         });
-
+}
+private void saveMemoryMode(String mode) {
+    requireActivity().getSharedPreferences("settings", Context.MODE_PRIVATE)
+            .edit()
+            .putString("memory_mode", mode)
+            .apply();
+}
         binding.settingsRenderHintHelpIb.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.wiki_fragment);
         });
