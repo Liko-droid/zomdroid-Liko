@@ -71,6 +71,7 @@ binding.settingsRenderHintHelpIb.setOnClickListener(v -> {
             public void onNothingSelected(AdapterView<?> parent) {}
         });
 }
+
 private void saveMemoryMode(String mode) {
     requireActivity().getSharedPreferences("settings", Context.MODE_PRIVATE)
             .edit()
