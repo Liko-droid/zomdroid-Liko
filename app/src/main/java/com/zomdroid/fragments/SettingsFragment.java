@@ -70,13 +70,6 @@ binding.settingsRenderHintHelpIb.setOnClickListener(v -> {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
         });
-}
-private void saveMemoryMode(String mode) {
-    requireActivity().getSharedPreferences("settings", Context.MODE_PRIVATE)
-            .edit()
-            .putString("memory_mode", mode)
-            .apply();
-}
 
         // Кастомный адаптер — отключает CUSTOM_DRIVER если файл не загружен
         ArrayAdapter<LauncherPreferences.VulkanDriver> vulkanDriverAdapter =
@@ -174,6 +167,13 @@ private void saveMemoryMode(String mode) {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
         });
+}
+private void saveMemoryMode(String mode) {
+    requireActivity().getSharedPreferences("settings", Context.MODE_PRIVATE)
+            .edit()
+            .putString("memory_mode", mode)
+            .apply();
+}
 
 @Override
 public void onDestroyView() {
