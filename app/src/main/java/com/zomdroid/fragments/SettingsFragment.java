@@ -84,7 +84,6 @@ public void onDestroyView() {
     super.onDestroyView();
     binding = null;
 }
-}
         // Кастомный адаптер — отключает CUSTOM_DRIVER если файл не загружен
         ArrayAdapter<LauncherPreferences.VulkanDriver> vulkanDriverAdapter =
                 new ArrayAdapter<LauncherPreferences.VulkanDriver>(requireContext(),
