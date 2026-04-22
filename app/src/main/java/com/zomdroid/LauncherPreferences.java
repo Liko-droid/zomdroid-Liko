@@ -149,7 +149,7 @@ public class LauncherPreferences {
     public enum Renderer {
         ZINK_ZFA("libzfa.so"),
         ZINK_OSMESA("libOSMesa.so"),
-        GL4ES("libgl4es.so");
+        GL4ES("libgl4es.so"),
 	GLADIO("libgladio.so");
 
         final String libName;
