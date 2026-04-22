@@ -56,6 +56,24 @@ public class GameLauncher {
                     //Os.setenv("FD_DEV_FEATURES", "enable_tp_ubwc_flag_hint=1", false);
                 }
                 break;
+	case GLADIO: {
+                // Indicamos a Mesa que el driver principal ahora es Gladio
+                Os.setenv("GALLIUM_DRIVER", "gladio", true);
+                
+                // Forzamos el uso de OpenGL ES 3.1, que es lo que el Helio maneja bien
+                Os.setenv("ZOMDROID_GLES_MAJOR", "3", true);
+                Os.setenv("ZOMDROID_GLES_MINOR", "1", true);
+                
+                // --- AJUSTE VITAL PARA LA BUILD 42 EN HELIO ---
+                // La B42 consume mucha más RAM por la nueva iluminación.
+                // Estos comandos ayudan a Box64 y al driver a no saturar la GPU.
+                Os.setenv("MESA_GL_VERSION_OVERRIDE", "4.6", true);
+                Os.setenv("MESA_GLSL_VERSION_OVERRIDE", "460", true);
+                
+                // Evitamos que el compilador de shaders se cuelgue
+                Os.setenv("glsl_compiler_warn", "0", true); 
+                break;
+            }
             /*case NG_GL4ES: {
                 Os.setenv("LIBGL_ES", "3", true);
                 //Os.setenv("LIBGL_GL", "21", true); // если нужен OpenGL 2.1 для движка

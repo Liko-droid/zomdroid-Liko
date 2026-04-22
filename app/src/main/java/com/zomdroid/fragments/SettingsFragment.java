@@ -51,6 +51,7 @@ public class SettingsFragment extends Fragment {
                         binding.settingsVulkanDriverTv.setVisibility(View.VISIBLE);
                         binding.settingsVulkanDriverS.setVisibility(View.VISIBLE);
                         break;
+			case GLADIO:
                     default:
                         binding.settingsVulkanDriverTv.setVisibility(View.GONE);
                         binding.settingsVulkanDriverS.setVisibility(View.GONE);
