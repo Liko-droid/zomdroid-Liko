@@ -56,7 +56,7 @@ public class GameLauncher {
                     //Os.setenv("FD_DEV_FEATURES", "enable_tp_ubwc_flag_hint=1", false);
                 }
                 break;
-	case GLADIO: {
+	case VIRGL: {
                 // Indicamos a Mesa que el driver principal ahora es Gladio
                 Os.setenv("GALLIUM_DRIVER", "gladio", true);
                 
