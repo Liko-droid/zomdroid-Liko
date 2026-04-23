@@ -150,7 +150,7 @@ public class LauncherPreferences {
         ZINK_ZFA("libzfa.so"),
         ZINK_OSMESA("libOSMesa.so"),
         GL4ES("libgl4es.so"),
-	GLADIO("libgladio.so");
+	VIRGL("libvirglrenderer.so");
 
         final String libName;
         Renderer(String libName) {
